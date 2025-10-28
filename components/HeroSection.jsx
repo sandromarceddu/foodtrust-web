@@ -8,22 +8,23 @@ export default function HeroSection() {
   const { t } = useI18n();
 
   return (
-    <section className="relative w-full h-[420px] md:h-[520px] lg:h-[580px] bg-gray-200">
-      {/* Background image shown entirely */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <Image
-          src="/foodtrust.png"
-          alt="Food Trust background"
-          fill
-          priority
-          className="object-contain p-4"
-        />
-      </div>
+    <section
+      className="relative w-full bg-gray-200"            // colore di riempimento dietro all’immagine
+      style={{ aspectRatio: '16 / 9' }}                   // ✅ impone 16:9 al contenitore
+    >
+      {/* Immagine mostrata interamente, senza tagli */}
+      <Image
+        src="/foodtrust.png"
+        alt="Food Trust background"
+        fill
+        priority
+        className="object-contain"                         // ✅ nessun crop
+      />
 
-      {/* Dark overlay to improve readability */}
-      <div className="absolute inset-0 bg-black/35" />
+      {/* Overlay per leggibilità (regola l’opacità se vuoi) */}
+      <div className="absolute inset-0 bg-black/30" />
 
-      {/* Text + buttons */}
+      {/* Testo + pulsanti */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
         <h1 className="text-white text-3xl md:text-5xl font-extrabold drop-shadow-lg mb-4">
           {t.hero.title}
@@ -40,7 +41,6 @@ export default function HeroSection() {
           >
             {t.hero.ctaProject}
           </Link>
-
           <a
             href="https://verify.blockchainfoodtrust.com"
             target="_blank"
