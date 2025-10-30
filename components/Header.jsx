@@ -1,66 +1,74 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useI18n } from './I18nProvider';
+import { useState } from "react";
+import Link from "next/link";
+import { useLanguage } from "../LanguageContext";
+import { translations } from "../translations";
 
 export default function Header() {
-  const { t, toggle } = useI18n();
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language].menu;
+
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="border-b bg-white fixed w-full z-40">
-      <div className="container flex items-center justify-between py-4">
+    <header className="w-full shadow-sm bg-white fixed top-0 left-0 z-50">
+      <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
         {/* LOGO */}
-        <Link href="/" className="flex items-center gap-3">
-          <Image src="/logo.png" alt="Logo" width={45} height={45} />
-          <span className="font-bold text-[1.2rem]">Blockchain Food Trust</span>
+        <Link href="/" className="text-xl font-extrabold tracking-wide">
+          BlockchainFoodTrust
         </Link>
 
         {/* MENU DESKTOP */}
-        <nav className="hidden md:flex gap-8">
-          <Link href="/" className="font-semibold text-[1.1rem]">{t.nav.home}</Link>
-          <Link href="/progetto" className="font-semibold text-[1.1rem]">{t.nav.project}</Link>
-          <Link href="/prodotti" className="font-semibold text-[1.1rem]">{t.nav.products}</Link>
-          <Link href="/territori" className="font-semibold text-[1.1rem]">{t.nav.regions}</Link>
-          <Link href="/verifica" className="font-semibold text-[1.1rem]">{t.nav.verify}</Link>
-          <Link href="/contatti" className="font-semibold text-[1.1rem]">{t.nav.contact}</Link>
-        </nav>
+        <div className="hidden md:flex space-x-8 text-lg font-bold">
+          <Link href="/progetto">{t.progetto}</Link>
+          <Link href="/prodotti">{t.prodotti}</Link>
+          <Link href="/territori">{t.territori}</Link>
+          <Link href="/verifica">{t.verifica}</Link>
+          <Link href="/contatti">{t.contatti}</Link>
+        </div>
 
-        {/* LINGUA */}
-        <button onClick={toggle} className="hidden md:block font-semibold text-[1.1rem]">
-          {t.nav.lang}
-        </button>
+        {/* SELECTOR LINGUA DESKTOP */}
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+          className="hidden md:block border px-2 py-1 rounded-md text-sm ml-4"
+        >
+          <option value="it">IT</option>
+          <option value="en">EN</option>
+        </select>
 
         {/* HAMBURGER MOBILE */}
-        <button className="md:hidden" onClick={() => setOpen(!open)}>
-          <div className={`transition-all ${open ? "rotate-45 translate-y-1" : ""}`}>
-            <div className="w-7 h-1 bg-black mb-1"></div>
-          </div>
-          <div className={`transition-all ${open ? "-rotate-45 -translate-y-1" : ""}`}>
-            <div className="w-7 h-1 bg-black"></div>
-          </div>
+        <button
+          className="md:hidden flex flex-col space-y-1"
+          onClick={() => setOpen(!open)}
+        >
+          <span className={`block h-1 w-7 bg-black transition ${open ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`block h-1 w-7 bg-black transition ${open ? "opacity-0" : ""}`} />
+          <span className={`block h-1 w-7 bg-black transition ${open ? "-rotate-45 -translate-y-2" : ""}`} />
         </button>
-      </div>
+      </nav>
 
       {/* MENU MOBILE */}
       {open && (
-        <div className="md:hidden bg-white border-t shadow-lg animate-fadeIn">
-          <nav className="flex flex-col text-center py-4 space-y-4 text-lg font-semibold">
-            <Link href="/" onClick={() => setOpen(false)}>{t.nav.home}</Link>
-            <Link href="/progetto" onClick={() => setOpen(false)}>{t.nav.project}</Link>
-            <Link href="/prodotti" onClick={() => setOpen(false)}>{t.nav.products}</Link>
-            <Link href="/territori" onClick={() => setOpen(false)}>{t.nav.regions}</Link>
-            <Link href="/verifica" onClick={() => setOpen(false)}>{t.nav.verify}</Link>
-            <Link href="/contatti" onClick={() => setOpen(false)}>{t.nav.contact}</Link>
+        <div className="md:hidden bg-white shadow-lg border-t animate-fadeIn px-6 py-6 space-y-4 text-lg font-bold">
+          
+          <Link href="/progetto" onClick={() => setOpen(false)}>{t.progetto}</Link>
+          <Link href="/prodotti" onClick={() => setOpen(false)}>{t.prodotti}</Link>
+          <Link href="/territori" onClick={() => setOpen(false)}>{t.territori}</Link>
+          <Link href="/verifica" onClick={() => setOpen(false)}>{t.verifica}</Link>
+          <Link href="/contatti" onClick={() => setOpen(false)}>{t.contatti}</Link>
 
-            {/* Cambio Lingua */}
-            <button onClick={toggle} className="py-2 text-green-700 underline">
-              {t.nav.lang}
-            </button>
-          </nav>
+          {/* SELECTOR LINGUA MOBILE */}
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            className="border px-2 py-1 rounded-md text-sm"
+          >
+            <option value="it">IT</option>
+            <option value="en">EN</option>
+          </select>
         </div>
       )}
     </header>
