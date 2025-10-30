@@ -10,20 +10,19 @@ export default function HeroSection() {
         relative w-full 
         h-[360px] md:h-[450px] lg:h-[495px] 
         flex items-center justify-center
+        bg-white
       "
       style={{
-        backgroundImage: "url('/hero-bg.png')",
-        backgroundSize: "cover",
+        backgroundImage: "url('/foodtrust.png')",
+        backgroundSize: "contain",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat"
+        backgroundRepeat: "no-repeat",
       }}
     >
 
-      {/* Overlay per rendere leggibile il testo */}
-      <div className="absolute inset-0 bg-black/40"></div>
-
       {/* Contenuto */}
       <div className="relative z-10 text-center text-white px-6 max-w-3xl">
+
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold drop-shadow-lg">
           {t.hero.title}
         </h1>
@@ -37,8 +36,9 @@ export default function HeroSection() {
             href="/progetto"
             className="
               bg-white text-black 
-              px-6 py-3 rounded-lg font-semibold 
-              hover:bg-gray-200 transition
+              px-8 py-4 rounded-lg font-semibold 
+              text-lg
+              hover:bg-gray-200 transition shadow-md
             "
           >
             {t.hero.learnMore}
@@ -48,13 +48,15 @@ export default function HeroSection() {
             href="/verifica"
             className="
               bg-green-600 text-white 
-              px-6 py-3 rounded-lg font-semibold 
-              hover:bg-green-700 transition
+              px-8 py-4 rounded-lg font-semibold 
+              text-lg
+              hover:bg-green-700 transition shadow-md
             "
           >
             {t.hero.verify}
           </a>
         </div>
+
       </div>
     </section>
   );
