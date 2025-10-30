@@ -8,8 +8,8 @@ export default function HeroSection() {
   const { t } = useI18n();
 
   return (
-    <section
-      className="relative w-full bg-gray-200"            // colore di riempimento dietro all’immagine
+   <section className="relative w-full h-[360px] md:h-[450px] lg:h-[495px] bg-gray-200">
+           // colore di riempimento dietro all’immagine
       style={{ aspectRatio: '16 / 9' }}                   // ✅ impone 16:9 al contenitore
     >
       {/* Immagine mostrata interamente, senza tagli */}
