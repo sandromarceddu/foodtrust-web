@@ -1,53 +1,58 @@
 'use client';
-
-import Image from 'next/image';
-import Link from 'next/link';
 import { useI18n } from './I18nProvider';
 
 export default function HeroSection() {
   const { t } = useI18n();
 
   return (
-   <section className="relative w-full h-[360px] md:h-[450px] lg:h-[495px] bg-gray-200">
-           // colore di riempimento dietro all’immagine
-      style={{ aspectRatio: '16 / 9' }}                   // ✅ impone 16:9 al contenitore
+    <section
+      className="
+        relative w-full 
+        h-[360px] md:h-[450px] lg:h-[495px] 
+        flex items-center justify-center
+      "
+      style={{
+        backgroundImage: "url('/hero-bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
+      }}
     >
-      {/* Immagine mostrata interamente, senza tagli */}
-      <Image
-        src="/foodtrust.png"
-        alt="Food Trust background"
-        fill
-        priority
-        className="object-contain"                         // ✅ nessun crop
-      />
 
-      {/* Overlay per leggibilità (regola l’opacità se vuoi) */}
-      <div className="absolute inset-0 bg-black/30" />
+      {/* Overlay per rendere leggibile il testo */}
+      <div className="absolute inset-0 bg-black/40"></div>
 
-      {/* Testo + pulsanti */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-        <h1 className="text-white text-3xl md:text-5xl font-extrabold drop-shadow-lg mb-4">
+      {/* Contenuto */}
+      <div className="relative z-10 text-center text-white px-6 max-w-3xl">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold drop-shadow-lg">
           {t.hero.title}
         </h1>
 
-        <p className="text-white text-lg md:text-xl drop-shadow-md max-w-2xl mb-8">
+        <p className="mt-4 text-lg md:text-xl drop-shadow-md">
           {t.hero.subtitle}
         </p>
 
-        <div className="flex gap-4">
-          <Link
-            href="/progetto"
-            className="bg-white/90 hover:bg-white text-black font-semibold px-6 py-3 rounded-lg shadow-md transition"
-          >
-            {t.hero.ctaProject}
-          </Link>
+        <div className="mt-6 flex justify-center gap-4">
           <a
-            href="https://verify.blockchainfoodtrust.com"
-            target="_blank"
-            rel="noreferrer"
-            className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition"
+            href="/progetto"
+            className="
+              bg-white text-black 
+              px-6 py-3 rounded-lg font-semibold 
+              hover:bg-gray-200 transition
+            "
           >
-            {t.hero.ctaVerify}
+            {t.hero.learnMore}
+          </a>
+
+          <a
+            href="/verifica"
+            className="
+              bg-green-600 text-white 
+              px-6 py-3 rounded-lg font-semibold 
+              hover:bg-green-700 transition
+            "
+          >
+            {t.hero.verify}
           </a>
         </div>
       </div>
