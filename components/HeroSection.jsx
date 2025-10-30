@@ -14,34 +14,35 @@ export default function HeroSection() {
       "
       style={{
         backgroundImage: "url('/foodtrust.png')",
-        backgroundSize: "contain",
+        backgroundSize: "110%",          // immagine ingrandita del 5–10%
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
 
       {/* Contenuto */}
-      <div className="relative z-10 text-center text-white px-6 max-w-3xl">
+      <div className="relative z-10 text-center px-6 max-w-3xl text-white">
 
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold drop-shadow-lg">
-          {t.hero.title}
+          La blockchain al servizio dell’autenticità alimentare italiana
         </h1>
 
         <p className="mt-4 text-lg md:text-xl drop-shadow-md">
-          {t.hero.subtitle}
+          Trasparenza, tracciabilità, fiducia.
         </p>
 
         <div className="mt-6 flex justify-center gap-4">
+
           <a
             href="/progetto"
             className="
               bg-white text-black 
               px-8 py-4 rounded-lg font-semibold 
-              text-lg
-              hover:bg-gray-200 transition shadow-md
+              text-lg shadow-md
+              hover:bg-gray-200 transition
             "
           >
-            {t.hero.learnMore}
+            Scopri il progetto
           </a>
 
           <a
@@ -49,14 +50,14 @@ export default function HeroSection() {
             className="
               bg-green-600 text-white 
               px-8 py-4 rounded-lg font-semibold 
-              text-lg
-              hover:bg-green-700 transition shadow-md
+              text-lg shadow-md
+              hover:bg-green-700 transition
             "
           >
-            {t.hero.verify}
+            Verifica origine
           </a>
-        </div>
 
+        </div>
       </div>
     </section>
   );
