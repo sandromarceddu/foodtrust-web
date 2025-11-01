@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import HeroSection from "../components/HeroSection";
-import { useI18n } from "../components/I18nProvider";
 
 export default function Home() {
   const { t } = useI18n();
