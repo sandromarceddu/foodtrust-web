@@ -1,17 +1,14 @@
-import HeroSection from '../components/HeroSection';
-import HowItWorks from '../components/HowItWorks';
-import ProductsSection from '../components/ProductsSection';
-import RegionsSection from '../components/RegionsSection';
-import CTASection from '../components/CTASection';
 
-export default function Page() {
+import HeroSection from "../components/HeroSection";
+
+export default function Home(){
   return (
-    <>
+    <main>
       <HeroSection />
-      <HowItWorks />
-      <ProductsSection />
-      <RegionsSection />
-      <CTASection />
-    </>
+      <div style={{padding:"40px", textAlign:"center"}}>
+        <h2>Benvenuto in Blockchain Food Trust</h2>
+        <p>La piattaforma di tracciabilità alimentare.</p>
+      </div>
+    </main>
   );
 }

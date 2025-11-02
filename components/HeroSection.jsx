@@ -1,22 +1,23 @@
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { useI18n } from './I18nProvider';
 
-export default function HeroSection() {
-  const { t } = useI18n();
+"use client";
+import Image from "next/image";
+import { useLanguage } from "./LanguageContext";
+import { translations } from "./translations";
+
+export default function HeroSection(){
+  const { language } = useLanguage();
+  const t = translations[language].hero;
+
   return (
-    <section className="bg-gradient-to-br from-green-50 to-yellow-50 border-b">
-      <div className="container py-16 md:py-24">
-        <motion.h1 initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} transition={{duration:0.6}}
-          className="text-3xl md:text-5xl font-extrabold mb-4">
-          {t.hero.title}
-        </motion.h1>
-        <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.2, duration:0.6}}
-          className="text-lg text-gray-700 mb-8">{t.hero.subtitle}</motion.p>
-        <div className="flex gap-3">
-          <Link href="/progetto" className="btn btn-secondary">{t.hero.ctaProject}</Link>
-          <a href="https://verify.blockchainfoodtrust.com" className="btn btn-primary" target="_blank" rel="noreferrer">{t.hero.ctaVerify}</a>
-        </div>
+    <section style={{position:"relative",width:"100%",height:"420px",
+      overflow:"hidden",display:"flex",justifyContent:"center",alignItems:"center"}}>
+
+      <Image src="/foodtrust.png" alt="hero" fill style={{objectFit:"cover"}}/>
+
+      <div style={{position:"absolute",color:"white",textAlign:"center",
+        textShadow:"0 0 10px black"}}>
+        <h1 style={{fontSize:"32px",fontWeight:"bold"}}>{t.titolo}</h1>
+        <p style={{fontSize:"18px",marginTop:"10px"}}>{t.descrizione}</p>
       </div>
     </section>
   );

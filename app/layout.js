@@ -1,22 +1,23 @@
-import './globals.css';
+
+import '../styles/globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { I18nProvider } from '../components/I18nProvider';
+import { LanguageProvider } from '../components/LanguageContext';
 
 export const metadata = {
-  title: 'Blockchain Food Trust',
-  description: 'Tracciabilità e autenticità alimentare italiana garantita da blockchain.',
+  title: "Blockchain Food Trust",
+  description: "Filiera alimentare certificata",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="it">
       <body>
-        <I18nProvider>
+        <LanguageProvider>
           <Header />
-          <main>{children}</main>
+          {children}
           <Footer />
-        </I18nProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
